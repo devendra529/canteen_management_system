@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Order System</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+header, footer {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+.menu-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.cart, .checkout {
+    margin-top: 20px;
+}
+
+#cartItems {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cartItems li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#cartItems img {
+    max-width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+#totalAmount {
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.checkout form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout form label, .checkout form input {
+    margin: 5px 0;
+}
+
+.checkout form input {
+    padding: 5px;
+    width: 200px;
+}
+
+.checkout form button {
+    margin-top: 10px;
+}
+.slider{
+    height:38rem;
+}
+.slider img{
+    width: 100%;
+    height: 100%;
+}
+.slider-container{
+    width: 100%;
+    height: 70%;
+
+}
+.our-menu .card{
+  border:none;
+}
+.our-menu .link_category_product{
+  position:relative;
+  display:block;
+  z-index:1;
+} 
+.our-menu .link_category_product::before{
+  position:absolute;
+  content:'';
+  top:50%;
+  left:50%;
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+  border:2px dotted var(--secondry-color);
+  z-index:-1;
+  transform:translateX(-50%) translateY(-50%) scale(0);
+  background:var(--primary-color);
+  -webkit-transition:all .4s ease;
+  -moz-transition:all .4s ease;
+  -ms-transition:all .4s ease;
+  -o-transition:all .4s ease;
+  transition:all .4s ease;
+}
+.card:hover .link_category_product::before{
+  transform:translateX(-50%) translateY(-50%) scale(1);
+}
+
+.our-menu .cat-title a{
+  text-align: center;
+  font-size: 0.8125rem;
+  position:relative;
+  display:inline-block;
+  text-transform: uppercase;
+  font-weight: 700;
+  color:var(--black-color);
+}
+.card:hover .cat-title a{
+  color:var(--primary-color);
+}
+.menu-item img{
+  width: 140px;
+  height: 150px;
+}
+footer{
+    font-size: x-large;
+}
+footer img{
+    width:60px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 16px;
+
+}
+footer :hover{
+    color: tomato;
+}
+.p11 img{
+    width:150px;
+    height: 100px;
+    padding: 5px;
+    border-radius: 16px;
+    align-items: center;
+
+
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Canteen Manegement System</h1>
+    </header>
+    <div class="slider-container">
+      <div class="slider">
+        <img src="banner1.jpg" alt="Image 1">
+        <img src="ban4.jpg" alt="Image 2">
+        <img src="ban2.jpg" alt="Image 3">
+        <img src="2.jpeg" alt="Image 4">
+      </div>
+      <button class="prev" onclick="prevSlide()">Previous</button>
+      <button class="next" onclick="nextSlide()">Next</button>
+    </div>
+    
+        
+    
+    
+    <div class="container">
+        <h2>Menu</h2>
+        <div class="menu">
+            
+            <div class="menu-item">
+                <img src="img-3.jpg" alt="Item 1">
+                <p>Fingers</p>
+                <p>RS-50</p>
+                <button onclick="addToCart('Item 1', 10, 'item1.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img-4.jpg" alt="Item 2">
+                <p>Cheese Burger</p>
+                <p>RS-80</p>
+                <button onclick="addToCart('Item 2', 15, 'item2.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img-5.jpg" alt="Item 3">
+                <p>Lemostraw shake</p>
+                <p>RS-120</p>
+                <button onclick="addToCart('Item 3', 12, 'item3.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img4.jpg" alt="Item 4">
+                <p>Chole Bhature</p>
+                <p>RS-60</p>
+                <button onclick="addToCart('Item 4', 8, 'item4.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img5.jpg" alt="Item 5">
+                <p>Pav Bhaji</p>
+                <p>RS-40</p>
+                <button onclick="addToCart('Item 5', 7, 'item5.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img6.jpg" alt="Item 6">
+                <p>Panni Puri</p>
+                <p>RS-20</p>
+                <button onclick="addToCart('Item 6', 9, 'item6.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img7.jpg" alt="Item 7">
+                <p>Cheese Pizza</p>
+                <p>RS-70</p>
+                <button onclick="addToCart('Item 8', 6, 'item8.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img8.jpg" alt="Item 8">
+                <p>Dhokla</p>
+                <p>Rs-90</p>
+                <button onclick="addToCart('Item 8', 6, 'item8.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img9.jpg" alt="Item 9">
+                <p>Dhokla cheese</p>
+                <p>Rs-20</p>
+                <button onclick="addToCart('Item 9', 14, 'item9.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img10.jpg" alt="Item 10">
+                <p>Chai Samosa</p>
+                <p>Rs-30</p>
+                <button onclick="addToCart('Item 10', 5, 'item10.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="img5.jpg" alt="Item 11">
+                <p>Pav Bhaji</p>
+                <p>Rs-60</p>
+            <button onclick="addToCart('Item 11', 11, 'item11.jpg')">Add to Cart</button>
+        </div>
+        </div>
+        
+        <div class="cart">
+            <h2>Your Cart</h2>
+            <ul id="cartItems"></ul>
+            <center>  <p class="p11" ><img src="quar2.jpg"></p></center>
+            <p id="totalAmount">Total: $0</p>
+            <button onclick="showCheckoutForm()">Proceed to Checkout</button>
+        </div>
+
+        <div class="checkout" id="checkoutForm" style="display: none;">
+            <h2>Checkout</h2>
+            <form onsubmit="processPayment(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required><br>
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" required><br>
+                <label for="text">address</label>
+                <input type="text" id="address" required><br>
+                <button type="submit">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Canteen Manegement  System</p>
+        <p>made by Devendra pratap singh</p>
+        <a href="https://www.instagram.com/singh_dev2208?igsh=MTkzZWs4anh3djFxaA=="><img src="logo1.jpeg" ></a>
+        <a href="https://www.linkedin.com/in/devendra-pratap-singh-1295b9296?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="logo2.png"></a>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+
+function showSlides() {
+  const slides = document.querySelectorAll('.slider img');
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = 'none';
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = 'block';
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+function prevSlide() {
+  slideIndex--;
+  showSlides();
+}
+
+function nextSlide() {
+  slideIndex++;
+  showSlides();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  showSlides();
+});
+
+let cart = [];
+let total = 0;
+
+function addToCart(itemName, itemPrice, itemImage) {
+    cart.push({ name: itemName, price: itemPrice, image: itemImage });
+    total += itemPrice;
+    displayCart();
+}
+
+function displayCart() {
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<img src="${item.image}" alt="${item.name}"> ${item.name} - $${item.price}`;
+        cartItems.appendChild(li);
+    });
+
+    document.getElementById('totalAmount').innerText = `Total: $${total}`;
+}
+
+function showCheckoutForm() {
+    document.getElementById('checkoutForm').style.display = 'block';
+}
+
+function processPayment(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const mobile = document.getElementById('mobile').value;
+    const address = document.getElementById('address').value;
+
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add items to the cart.');
+        return;
+    }
+
+    const orderDetails = cart.map(item => `${item.name} - $${item.price}`).join('\n');
+    const orderMessage = `Order Details:\n${orderDetails}\n\nTotal: $${total}\n\nCustomer Details:\nName: ${name}\nMobile: ${mobile}\nAddress: ${address}\n\nThank you for your order!`;
+    
+    console.log(orderMessage); 
+    alert(orderMessage); 
+
+    
+    cart = [];
+    total = 0;
+    displayCart();
+    document.getElementById('checkoutForm').style.display = 'none';
+}
+
+    </script>
+</body>
+</html>
