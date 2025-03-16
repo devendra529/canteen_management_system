@@ -10,4 +10,5 @@ Installation
 -- Clone the repository:
 
 git clone https://github.com/your-username/canteen_management_system.git
+
 cd canteen_management_system
